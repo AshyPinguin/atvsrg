@@ -93,12 +93,6 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
       else lastValidIndex = i + 1
     }
 
-    //Handle note hit events TODO
-    /*
-        for (i in keyStates) {
-        }
-    */
-
     game.withRenderer(ShapeRenderer.ShapeType.Filled) {
       drawableArea(worldWidth, worldHeight)
       columns(noteWidth, worldHeight, noteWallOffset)
