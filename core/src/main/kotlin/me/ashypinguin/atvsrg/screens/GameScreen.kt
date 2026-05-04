@@ -154,6 +154,13 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
         }
       }
 
+      rhythmBar(
+        noteWallOffset,
+        rhythmBarHeight,
+        noteWidth * 4f,
+        worldHeight * (1f - ((beat + RHYTHM_BAR_OFFSET) % BEAT_SCROLL_SPEED / BEAT_SCROLL_SPEED))
+      )
+
       keyStates.forEachIndexed { i, pressed ->
         if (!pressed) return@forEachIndexed
         key(i.offsetToColor(), i, noteWallOffset, keyGroundOffset, noteWidth, noteHeight)
