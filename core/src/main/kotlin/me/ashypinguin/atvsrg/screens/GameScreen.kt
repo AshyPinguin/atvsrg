@@ -25,9 +25,7 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
   private var acc = 1f
   private var score = 0
 
-  /**
-   * Handy internal variable to get beats
-   */
+  /** Handy internal variable to get beats */
   private val beat get() = timeSinceStart * (map.bpm / 60f)
   private var timeSinceStart = -2.5f
 
