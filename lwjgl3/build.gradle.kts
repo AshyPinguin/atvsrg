@@ -60,7 +60,10 @@ tasks.run {
 
 tasks.jar {
 // sets the name of the .jar file this produces to the name of the game or app, with the version after.
-  archiveFileName.set("${project.name}-${project.version}.jar")
+  archiveFileName.set("$jarName.jar")
+
+  from(files(rootProject.file("assets")))
+
 // the duplicatesStrategy matters starting in Gradle 7.0; this setting works.
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
   dependsOn(configurations.runtimeClasspath)
@@ -92,15 +95,26 @@ tasks.register<Jar>("jarMac") {
   group = "build"
   dependsOn("jar")
 
-  archiveFileName.set("${project.name}-${project.version}-mac.jar")
+  archiveFileName.set("$jarName-mac.jar")
+
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
   from(sourceSets.main.get().output)
   from({ configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) } })
+  from(files(rootProject.file("assets")))
 
   exclude(
     "windows/x86/**", "windows/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**", "**/*.dll", "**/*.so",
     "META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA"
   )
+
+  manifest {
+    attributes(
+      "Main-Class" to application.mainClass.get(),
+      "Enable-Native-Access" to "ALL-UNNAMED",
+      "Multi-Release" to "true"
+    )
+  }
 }
 
 // Builds a JAR that only includes the files needed to run on Linux, not Windows or macOS.
@@ -109,15 +123,26 @@ tasks.register<Jar>("jarLinux") {
   group = "build"
   dependsOn("jar")
 
-  archiveFileName.set("${project.name}-${project.version}-linux.jar")
+  archiveFileName.set("$jarName-linux.jar")
+
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
   from(sourceSets.main.get().output)
   from({ configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) } })
+  from(files(rootProject.file("assets")))
 
   exclude(
     "windows/x86/**", "windows/x64/**", "macos/arm64/**", "macos/x64/**", "**/*.dll", "**/*.dylib",
     "META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA"
   )
+
+  manifest {
+    attributes(
+      "Main-Class" to application.mainClass.get(),
+      "Enable-Native-Access" to "ALL-UNNAMED",
+      "Multi-Release" to "true"
+    )
+  }
 }
 
 // Builds a JAR that only includes the files needed to run on Windows, not Linux or macOS.
@@ -126,15 +151,26 @@ tasks.register<Jar>("jarWin") {
   group = "build"
   dependsOn("jar")
 
-  archiveFileName.set("${project.name}-${project.version}-win.jar")
+  archiveFileName.set("$jarName-win.jar")
+
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
   from(sourceSets.main.get().output)
   from({ configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) } })
+  from(files(rootProject.file("assets")))
 
   exclude(
     "macos/arm64/**", "macos/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**", "**/*.dylib", "**/*.so",
     "META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA"
   )
+
+  manifest {
+    attributes(
+      "Main-Class" to application.mainClass.get(),
+      "Enable-Native-Access" to "ALL-UNNAMED",
+      "Multi-Release" to "true"
+    )
+  }
 }
 
 construo {
