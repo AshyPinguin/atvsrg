@@ -19,13 +19,15 @@ const val NOTE_DARKNESS = .3f
 const val BEAT_SCROLL_SPEED = 5
 
 //something e-3f is milliseconds :3
-const val BAD_MAX_OFFSET_SEC = 50e-3f
-const val MEH_MAX_OFFSET_SEC = 40e-3f
-const val GOOD_MAX_OFFSET_SEC = 30e-3f
-const val GREAT_MAX_OFFSET_SEC = 20e-3f
-const val PERFECT_MAX_OFFSET_SEC = 20e-3f
+//If the hit was earlier than 188ms then it doesn't count (later it is of course a miss)
+const val MISS_MAX_OFFSET_SEC = 188e-3f
+const val MEH_MAX_OFFSET_SEC = 151e-3f
+const val OK_MAX_OFFSET_SEC = 127e-3f
+const val GOOD_MAX_OFFSET_SEC = 97e-3f
+const val GREAT_MAX_OFFSET_SEC = 64e-3f
+const val PERFECT_MAX_OFFSET_SEC = 16e-3f
 
-const val MUSIC_VOLUME = .4f
+const val MUSIC_VOLUME = .3f
 const val FPS_WIDTH_PERCENT = .125f
 const val FPS_HEIGHT_PERCENT = .075f
 const val FPS_OFFSET_WALL_PERCENT = 1f - FPS_WIDTH_PERCENT
