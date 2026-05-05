@@ -21,6 +21,7 @@ plugins {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.compilerOptions { freeCompilerArgs.set(listOf("-Xexplicit-backing-fields")) }
 
+val jarName = "${rootProject.name}-${project.name}-${project.version}"
 
 sourceSets.main {
   resources.srcDirs += rootProject.file("assets")
