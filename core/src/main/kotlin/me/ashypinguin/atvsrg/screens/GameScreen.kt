@@ -96,10 +96,6 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
     game.withRenderer(ShapeRenderer.ShapeType.Filled) {
       drawableArea(worldWidth, worldHeight)
       columns(noteWidth, worldHeight, noteWallOffset)
-      rhythmBar(
-        noteWallOffset, rhythmBarHeight, noteWidth * 4f,
-        worldHeight * (1f - ((beat + RHYTHM_BAR_OFFSET) % BEAT_SCROLL_SPEED / BEAT_SCROLL_SPEED))
-      )
 
       //Inactive keys
       keyStates.forEachIndexed { i, pressed ->
