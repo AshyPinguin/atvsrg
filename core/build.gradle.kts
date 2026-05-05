@@ -10,7 +10,7 @@ dependencies {
   api(libs.bundles.gdx.core)
   api(libs.vis.ui)
   api(libs.bundles.ktx.core)
-  api(libs.artemis)
+//  api(libs.artemis)
   api(libs.kotlin.stdlib)
   api(libs.kotlin.coroutines)
 
