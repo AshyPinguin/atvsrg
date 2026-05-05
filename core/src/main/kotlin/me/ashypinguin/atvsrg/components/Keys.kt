@@ -22,10 +22,9 @@ fun ShapeRenderer.key(
   color: Color,
   offset: Int,
   wallOffset: Float,
-  groundOffset: Float,
   noteWidth: Float,
   noteHeight: Float
 ) {
   this.color = color
-  rect(noteWidth * offset + wallOffset, groundOffset, noteWidth, noteHeight)
+  rect(noteWidth * offset + wallOffset, 0f, noteWidth, noteHeight)
 }

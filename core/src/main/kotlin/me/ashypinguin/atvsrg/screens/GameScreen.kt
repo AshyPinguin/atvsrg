@@ -98,7 +98,7 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
       //Inactive keys
       keyStates.forEachIndexed { i, pressed ->
         if (pressed) return@forEachIndexed
-        key(i.offsetToUnpressedColor(), i, noteWallOffset, keyGroundOffset, noteWidth, noteHeight)
+        key(i.offsetToUnpressedColor(), i, noteWallOffset, noteWidth, noteHeight)
       }
 
       //Notes
@@ -151,7 +151,7 @@ class GameScreen(game: Atvsrg, val map: BeatMap) : AbstractScreen(game) {
 
       keyStates.forEachIndexed { i, pressed ->
         if (!pressed) return@forEachIndexed
-        key(i.offsetToColor(), i, noteWallOffset, keyGroundOffset, noteWidth, noteHeight)
+        key(i.offsetToColor(), i, noteWallOffset, noteWidth, noteHeight)
       }
 
       fpsCounter(fpsX, fpsY, fpsWidth, fpsHeight)
