@@ -306,5 +306,11 @@ class EndScreen(game: Atvsrg, @Suppress("CanBeParameter", "RedundantSuppression"
       }
       log.debug { "rank = $rank" }
     }
+
+    if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+      game.addScreen(MainMenuScreen(game))
+      game.setScreen<MainMenuScreen>()
+      game.removeScreen<EndScreen>()
+    }
   }
 }
